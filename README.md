@@ -22,7 +22,7 @@ Note: This Program can be used send text message with one attachment
 
 1. Enter the message you want to send inside `message.txt` file.
 2. Enter the list of numbers line-separated in `numbers.txt` file.
-3. Add the attachment to be send with name `image.jpg`
+3. Specify the attachment path in the `main.py line no 70`
 4. Run `python main.py`.
 5. Once the program starts, you'll see the message in message.txt and count of numbers in the numbers.txt file.
 6. After a while, Chrome should pop-up and open web.whatsapp.com.
