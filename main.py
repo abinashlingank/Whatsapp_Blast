@@ -67,7 +67,7 @@ for idx,number in enumerate(numbers):
 
 	try:
 		url = 'https://web.whatsapp.com/send?phone=91' + number + '&text=' + message
-		image_path='image.jpg'
+		image_path='image.jpg'   #specify the image path here
 		sent = False
 		for i in range(3):
 			if not sent:
