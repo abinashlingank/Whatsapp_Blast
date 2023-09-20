@@ -27,7 +27,7 @@ Note: This Program can be used send text message with one attachment
 2. Enter the list of numbers line-separated in `numbers.txt` file.
 3. Specify the attachment path in the `main.py line no 70`
 4. Run `python main.py`.
-5. **Note Talos students use main2.py for Image Caption messages(Put your messages in `message1.txt` and `message2.txt`)
+5. **Note for Talos students: use main2.py for Image Caption messages(Put your messages in `message1.txt` and `message2.txt`)
 6. Once the program starts, you'll see the message in message.txt and count of numbers in the numbers.txt file.
 7. After a while, Chrome should pop-up and open web.whatsapp.com.
 8. Scan the QR code to login into whatsapp.
