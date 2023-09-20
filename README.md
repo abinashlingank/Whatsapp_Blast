@@ -33,3 +33,4 @@ Note: This Program can be used send text message with one attachment
 8. Scan the QR code to login into whatsapp.
 9. Press `Enter` to start sending out messages.
 10. Sit back and relax!
+11. If Process stops due to internet connectivity, No problem at all `error.txt` has the numbers which has tp be resend again.
