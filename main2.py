@@ -81,6 +81,7 @@ for idx,number in enumerate(numbers):
 			attac_btn.click()
 			img_btn = driver.find_element(By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input')
 			img_btn.send_keys(image_path)
+			sleep(0.5)
 			send_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
 			send_btn.click()
 			sleep(3)              
