@@ -7,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 from urllib.parse import quote
 import os
+from selenium.webdriver.chrome.service import Service
 
 opt = Options()
 opt.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -51,7 +52,7 @@ message = quote(message)
 message2 = quote(message2)
 
 numbers = []
-f = open(r"/home/abinashlingank/Desktop/Whatsapp_Blast-main/numbers.txt", "r")
+f = open(r"numbers.txt", "r")
 for line in f:
 	if line.strip() != "":
 		numbers.append(line)
@@ -64,7 +65,7 @@ delay = 30
 driver = webdriver.Chrome(options=opt)
 print('Once your browser opens up sign in to web whatsapp')
 driver.get('https://web.whatsapp.com')
-sleep(2)
+sleep(2) 
 
 errorList =[]
 input(style.MAGENTA + "AFTER logging into Whatsapp Web is complete and your chats are visible, press ENTER..." + style.RESET)
@@ -77,37 +78,38 @@ for idx,number in enumerate(numbers):
 
 	#try:
 	url = 'https://web.whatsapp.com/send?phone=91' + number + '&text=' + message
-	url2 = 'https://web.whatsapp.com/send?phone=91' + number + '&text=' + message2
-	image_path="/home/abinashlingank/Desktop/Whatsapp_Blast-main/Talos Poster.jpeg"   #specify the image path here
+	# url2 = 'https://web.whatsapp.com/send?phone=91' + number + '&text=' + message2
+	image_path="poster.jpeg"   #specify the image path here
 	sent = False
 	if not sent:
 		try:
 			driver.get(url)
 			attac_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='attach-menu-plus']")))
-			attac_btn = driver.find_element(By.XPATH, '//span[@data-icon="attach-menu-plus"]')
+			# attac_btn = driver.find_element(By.XPATH, '//span[@data-icon="attach-menu-plus"]')
 			attac_btn.click()
-			img_btn = driver.find_element(By.XPATH, "//input[@accept='image/*,video/mp4,video/3gpp,video/quicktime']")
+			# img_btn = driver.find_element(By.XPATH, "//input[@accept='image/*,video/mp4,video/3gpp,video/quicktime']")
+			img_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[2]/li/div/input')))
 			img_btn.send_keys(image_path)
 			sleep(1)
 			send_btn = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
 			send_btn = driver.find_element(By.XPATH, "//span[@data-icon='send']")
 			send_btn.click()
 			sleep(3)              
-			try:
-				driver.get(url2)
-				can_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div[5]/div/footer/div[2]/div/div[5]/div/div/div/div[2]/div/span")))
-				can_btn.click()
-				send_btn1 = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
-				send_btn1.click()
-			except:
-				driver.get(url2)
-				send_btn1 = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
-				send_btn1.click()
+			# try:
+			# 	driver.get(url2)
+			# 	can_btn = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div[5]/div/footer/div[2]/div/div[5]/div/div/div/div[2]/div/span")))
+			# 	can_btn.click()
+			# 	send_btn1 = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
+			# 	send_btn1.click()
+			# except:
+			# 	driver.get(url2)
+			# 	send_btn1 = WebDriverWait(driver, 50).until(EC.element_to_be_clickable((By.XPATH, "//span[@data-icon='send']")))
+			# 	send_btn1.click()
 			sent=True
 			sleep(3)
 			print(style.GREEN + 'Message sent to: ' + number + style.RESET)
-		except:
-			print("error")
+		except Exception as e:
+			print("error:",e)
 			errorList.append(number+'\n')
 			continue
 			print(number)
